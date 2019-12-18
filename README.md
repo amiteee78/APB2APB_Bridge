@@ -118,7 +118,7 @@ All the interfaces connecting the test bench, APB master, APB slave and SRAM mod
 
 ## Block Diagram
 
-<img src="https://github.com/amiteee78/RTL_design/blob/76e99cc94771de8f5a42a7cdc0ba7e900485fe4b/apb2apb_bridge/docs/apb_interface.png">
+<img src="https://github.com/amiteee78/APB2APB_Bridge/blob/2a44e0f47f116342e1c21054f01c002d6e370af9/docs/apb_interface.png">
 
 -------------------------------------------------------------------------------
 
@@ -131,7 +131,7 @@ All the interfaces connecting the test bench, APB master, APB slave and SRAM mod
     * If **ready** is held LOW by the slave then the peripheral bus remains in the ACCESS state.
     * If **ready** is driven HIGH by the slave then the ACCESS state is exited and the bus returns to the IDLE state if no more transfers are required. Alternatively, the bus moves directly to the SETUP state if another transfer follows.
 
-<img src="https://github.com/amiteee78/RTL_design/blob/5f0e44b7fd6a5500b9f341255827e54cf1384efe/apb2apb_bridge/docs/APB_FSM.png" width="450px">
+<img src="https://github.com/amiteee78/APB2APB_Bridge/blob/2a44e0f47f116342e1c21054f01c002d6e370af9/docs/APB_FSM.png" width="450px">
 
 ## Functional Verification
 
