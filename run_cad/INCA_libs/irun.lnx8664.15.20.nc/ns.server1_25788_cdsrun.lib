@@ -1,0 +1,2 @@
+SOFTINCLUDE /mnt/cad/cadence/lnx/INCISIVE152/tools/inca/files/cds.lib
+define worklib ../worklib

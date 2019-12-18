@@ -1,0 +1,69 @@
+[*]
+[*] GTKWave Analyzer v3.3.103 (w)1999-2019 BSI
+[*] Sun Dec 15 11:20:49 2019
+[*]
+[dumpfile] "/home/ashuvo/github_repo/RTL_design/apb2apb_bridge/run_viv/apb_bridge_tb.vcd"
+[dumpfile_mtime] "Sun Dec 15 11:10:17 2019"
+[dumpfile_size] 233315
+[savefile] "/home/ashuvo/github_repo/RTL_design/apb2apb_bridge/run_viv/apb_bridge.gtkw"
+[timestart] 0
+[size] 1920 1010
+[pos] -1 -1
+*-6.238371 6379 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[treeopen] apb_bridge_tb.
+[treeopen] apb_bridge_tb.apb2apb.
+[treeopen] apb_bridge_tb.apb2apb.pmaster.
+[treeopen] apb_bridge_tb.apb2apb.pmaster.mbus.
+[treeopen] apb_bridge_tb.apb2apb.pslave.
+[treeopen] apb_bridge_tb.apb2apb.pslave.sbus.
+[sst_width] 48
+[signals_width] 182
+[sst_expanded] 0
+[sst_vpaned_height] 306
+@28
+apb_bridge_tb.apb2apb.ibus.clk
+apb_bridge_tb.apb2apb.ibus.rst_n
+apb_bridge_tb.apb2apb.pbus.dsel[1:0]
+apb_bridge_tb.apb2apb.ibus.trnsfr
+apb_bridge_tb.apb2apb.ibus.wr
+@22
+apb_bridge_tb.apb2apb.ibus.address[31:0]
+apb_bridge_tb.apb2apb.ibus.data_in[31:0]
+apb_bridge_tb.apb2apb.ibus.data_out[31:0]
+@200
+-
+@28
+apb_bridge_tb.apb2apb.pmaster.mbus.master.sel
+apb_bridge_tb.apb2apb.pmaster.mbus.master.write
+apb_bridge_tb.apb2apb.pmaster.mbus.master.enable
+@22
+apb_bridge_tb.apb2apb.pmaster.mbus.master.addr[31:0]
+apb_bridge_tb.apb2apb.pmaster.mbus.master.wdata[31:0]
+@28
+apb_bridge_tb.apb2apb.pmaster.mbus.master.ready
+apb_bridge_tb.apb2apb.pmaster.mbus.master.slverr
+apb_bridge_tb.apb2apb.pslave.slverr_reg
+@22
+apb_bridge_tb.apb2apb.pmaster.mbus.master.rdata[31:0]
+@24
+apb_bridge_tb.apb2apb.pmaster.m_state[1:0]
+@201
+-
+@28
+apb_bridge_tb.test_bus.mem_wr
+apb_bridge_tb.test_bus.mem_rd
+@c00022
+apb_bridge_tb.mem_bus.mem.mem_be[3:0]
+@28
+(0)apb_bridge_tb.mem_bus.mem.mem_be[3:0]
+(1)apb_bridge_tb.mem_bus.mem.mem_be[3:0]
+(2)apb_bridge_tb.mem_bus.mem.mem_be[3:0]
+(3)apb_bridge_tb.mem_bus.mem.mem_be[3:0]
+@1401200
+-group_end
+@22
+apb_bridge_tb.test_bus.mem_address[31:0]
+apb_bridge_tb.mem_bus.mem.mem_data_out[31:0]
+apb_bridge_tb.test_bus.mem_data_in[31:0]
+[pattern_trace] 1
+[pattern_trace] 0

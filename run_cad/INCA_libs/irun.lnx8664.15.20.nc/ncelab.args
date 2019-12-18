@@ -1,0 +1,28 @@
+//
+// File created by:  irun
+// Do not modify this file
+//
+-ACCESS
++rwc
++FSMDEBUG
+-DISABLE_SEM2009
+-timescale
+1ns/1ns
+-COVFILE
+coverage/apb_bridge_cov.ccf
+-COVERAGE
+A
+-COVDUT
+apb_bridge_tb
+-NOCOPYRIGHT
+-MESSAGES
+-XLMODE
+./INCA_libs/irun.lnx8664.15.20.nc
+-RUNMODE
+-CDSLIB
+./INCA_libs/irun.lnx8664.15.20.nc/cds.lib
+-HDLVAR
+./INCA_libs/irun.lnx8664.15.20.nc/hdl.var
+-WORK
+worklib
+-HASXLMODE

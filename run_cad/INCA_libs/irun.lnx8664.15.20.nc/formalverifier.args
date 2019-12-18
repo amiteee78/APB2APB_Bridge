@@ -1,0 +1,13 @@
+//
+// File created by:  irun
+// Do not modify this file
+//
+-INPUT
+script/apb_bridge_tb.tcl
+-COVERAGE
+A
+-COVOVERWRITE
+-COVTEST
+apb_bridge_tb_test
+-NOCOPYRIGHT
+-MESSAGES

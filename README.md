@@ -118,7 +118,7 @@ All the interfaces connecting the test bench, APB master, APB slave and SRAM mod
 
 ## Block Diagram
 
-<img src="https://github.com/amiteee78/RTL_design/blob/76e99cc94771de8f5a42a7cdc0ba7e900485fe4b/apb2apb_bridge/docs/apb_interface.png" width="700px">
+<img src="https://github.com/amiteee78/RTL_design/blob/76e99cc94771de8f5a42a7cdc0ba7e900485fe4b/apb2apb_bridge/docs/apb_interface.png">
 
 -------------------------------------------------------------------------------
 
