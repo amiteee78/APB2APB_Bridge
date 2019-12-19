@@ -1,0 +1,122 @@
+
+#
+# Mnemonic Maps
+#
+mmap new -reuse -name {Boolean as Logic} -radix %b -contents {{%c=FALSE -edgepriority 1 -shape low}
+{%c=TRUE -edgepriority 1 -shape high}}
+mmap new -reuse -name {Example Map} -radix %x -contents {{%b=11???? -bgcolor orange -label REG:%x -linecolor yellow -shape bus}
+{%x=1F -bgcolor red -label ERROR -linecolor white -shape EVENT}
+{%x=2C -bgcolor red -label ERROR -linecolor white -shape EVENT}
+{%x=* -label %x -linecolor gray -shape bus}}
+
+array unset createdGroup
+array set createdGroup {}
+set id [waveform add -signals [subst  {
+	{[format {apb_bridge_tb.dsel[1:0]}]}
+	} ]]
+set id [waveform add -label APB_Bridge -comment {}]
+waveform format $id -bgcolor #0099ff
+set id [waveform add -signals [subst  {
+	{[format {apb_bridge_tb.apb2apb.pbus.master.clk}]}
+	} ]]
+set id [waveform add -signals [subst  {
+	{[format {apb_bridge_tb.apb2apb.pbus.master.rst_n}]}
+	} ]]
+set id [waveform add -signals [subst  {
+	{[format {apb_bridge_tb.apb2apb.pbus.master.dsel[1:0]}]}
+	} ]]
+set id [waveform add -signals [subst  {
+	{[format {apb_bridge_tb.apb2apb.pbus.master.trnsfr}]}
+	} ]]
+set id [waveform add -signals [subst  {
+	{[format {apb_bridge_tb.apb2apb.pbus.master.wr}]}
+	} ]]
+set id [waveform add -signals [subst  {
+	{[format {apb_bridge_tb.apb2apb.pbus.master.address[31:0]}]}
+	} ]]
+set id [waveform add -signals [subst  {
+	{[format {apb_bridge_tb.apb2apb.pbus.master.data_in[31:0]}]}
+	} ]]
+set id [waveform add -signals [subst  {
+	{[format {apb_bridge_tb.apb2apb.pbus.master.data_out[31:0]}]}
+	} ]]
+set id [waveform add -cdivider divider]
+set id [waveform add -label APB_master -comment {}]
+waveform format $id -bgcolor #0099ff
+set id [waveform add -signals [subst  {
+	{[format {apb_bridge_tb.apb2apb.pbus.master.addr[31:0]}]}
+	} ]]
+set id [waveform add -signals [subst  {
+	{[format {apb_bridge_tb.apb2apb.pbus.master.wdata[31:0]}]}
+	} ]]
+set id [waveform add -signals [subst  {
+	{[format {apb_bridge_tb.apb2apb.pbus.master.strb[3:0]}]}
+	} ]]
+set id [waveform add -signals [subst  {
+	{[format {apb_bridge_tb.apb2apb.pbus.master.write}]}
+	} ]]
+set id [waveform add -signals [subst  {
+	{[format {apb_bridge_tb.apb2apb.pbus.master.sel}]}
+	} ]]
+set id [waveform add -signals [subst  {
+	{[format {apb_bridge_tb.apb2apb.pbus.master.enable}]}
+	} ]]
+set id [waveform add -signals [subst  {
+	{[format {apb_bridge_tb.apb2apb.pbus.master.ready}]}
+	} ]]
+set id [waveform add -signals [subst  {
+	{[format {apb_bridge_tb.apb2apb.pbus.master.slverr}]}
+	} ]]
+set id [waveform add -signals [subst  {
+	{[format {apb_bridge_tb.apb2apb.pbus.master.rdata[31:0]}]}
+	} ]]
+set id [waveform add -signals [subst  {
+	{[format {apb_bridge_tb.apb2apb.pmaster.m_state}]}
+	} ]]
+waveform format $id -color #ff9900
+waveform hierarchy collapse $id
+set id [waveform add -cdivider divider]
+set id [waveform add -label APB_slave -comment {}]
+waveform format $id -bgcolor #0099ff
+set id [waveform add -signals [subst  {
+	{[format {apb_bridge_tb.apb2apb.pslave.ready_reg}]}
+	} ]]
+set id [waveform add -signals [subst  {
+	{[format {apb_bridge_tb.apb2apb.pslave.slverr_reg}]}
+	} ]]
+set id [waveform add -signals [subst  {
+	{[format {apb_bridge_tb.apb2apb.pslave.rdata_reg[31:0]}]}
+	} ]]
+set id [waveform add -signals [subst  {
+	{[format {apb_bridge_tb.apb2apb.pslave.rdata_filt_reg[31:0]}]}
+	} ]]
+set id [waveform add -cdivider divider]
+set id [waveform add -label SRAM -comment {}]
+waveform format $id -bgcolor #0099ff
+set id [waveform add -signals [subst  {
+	{[format {apb_bridge_tb.memory.ram[3:0]}]}
+	} ]]
+waveform hierarchy expand $id
+set id2 [lindex [waveform hierarchy content $id] 3]
+waveform hierarchy collapse $id2
+waveform hierarchy collapse $id
+set id [waveform add -signals [subst  {
+	{[format {apb_bridge_tb.mem_bus.mem_be[3:0]}]}
+	} ]]
+set id [waveform add -signals [subst  {
+	{[format {apb_bridge_tb.mem_bus.mem_wr}]}
+	} ]]
+set id [waveform add -signals [subst  {
+	{[format {apb_bridge_tb.mem_bus.mem_rd}]}
+	} ]]
+set id [waveform add -signals [subst  {
+	{[format {apb_bridge_tb.mem_bus.mem_address[31:0]}]}
+	} ]]
+set id [waveform add -signals [subst  {
+	{[format {apb_bridge_tb.mem_bus.mem_data_in[31:0]}]}
+	} ]]
+set id [waveform add -signals [subst  {
+	{[format {apb_bridge_tb.mem_bus.mem_data_out[31:0]}]}
+	} ]]
+
+waveform xview limits 0 752ns

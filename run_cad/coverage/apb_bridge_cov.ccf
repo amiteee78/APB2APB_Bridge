@@ -1,0 +1,12 @@
+
+# Setting coverage configurations for coverage analysis & fsm extraction
+	select_coverage -bet -module worklib.apb_bridge_tb
+	set_toggle_scoring -sv_enum
+	set_expr_scoring -control
+	set_expr_coverable_operators -event
+	set_expr_coverable_statements -all
+	set_covergroup -per_instance_default_one
+	set_covergroup -new_instance_reporting
+	set_fsm_scoring -hold_transition
+	select_coverage -bet -file apb_bridge_tb.sv
+	select_functional

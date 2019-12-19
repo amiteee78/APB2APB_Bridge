@@ -1,0 +1,37 @@
+//
+// File created by:  irun
+// Do not modify this file
+//
+-access
++rwc
++fsmdebug
+-disable_sem2009
+-timescale
+1ns/1ns
+-incdir
+../arch_specs/
+-sv
+../rtl/apb_bridge.sv
+../rtl/apb_intf.sv
+../rtl/apb_master.sv
+../rtl/apb_mem.sv
+../rtl/apb_slave.sv
+-sysv
+../tb/apb_bridge_tb.sv
+-covfile
+coverage/apb_bridge_cov.ccf
+-input
+script/apb_bridge_tb.tcl
+-coverage
+A
+-covdut
+apb_bridge_tb
+-covoverwrite
+-covtest
+apb_bridge_tb_test
+-date
+-clean
+-nocopyright
+-nohistory
+-nolog
+-stats

@@ -1,0 +1,13 @@
+//
+// File created by:  irun
+// Do not modify this file
+//
++NoArgsToLog
+-SYSV
+-COVERAGE
+A
+-COVOVERWRITE
+-COVTEST
+apb_bridge_tb_test
+-NOCOPYRIGHT
+-UPDATE

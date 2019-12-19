@@ -1,0 +1,1 @@
+--lib "apb_bridge_tb_lib" --snapshot "apb_bridge_tb_behav" "apb_bridge_tb_lib.apb_bridge_tb" --timescale "1ns/1ns" --nolog 
