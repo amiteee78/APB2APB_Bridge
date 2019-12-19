@@ -36,7 +36,10 @@ module apb_master (apbif.master mbus);
   logic      [1:0]              strb_reg;
   logic                         wr_reg;
   logic      [`ADDR_WIDTH-1:0]  address_reg;
+  logic      [`ADDR_WIDTH-1:0]  base_addr_reg;
   logic      [`DATA_WIDTH-1:0]  data_in_reg;
+  logic      [2:0]              timeout_reg;
+  logic                         timeout_trig;
 
   /*********************************************************/
   /*  ***************************************************  */
@@ -49,26 +52,53 @@ module apb_master (apbif.master mbus);
   begin
     if(~mbus.rst_n) 
     begin
-      strb_reg    <= '0;
-      wr_reg      <= '0;
-      address_reg <= '0;
-      data_in_reg <= '0;
+      strb_reg      <= '0;
+      wr_reg        <= '0;
+      address_reg   <= '0;
+      base_addr_reg <= '0;
+      data_in_reg   <= '0;
     end 
     else if (mbus.trnsfr)
     begin
-      strb_reg    <= {mbus.address,2'b00} >> mbus.dsel;
-      wr_reg      <= mbus.wr;
-      address_reg <= mbus.address >> mbus.dsel;
-      data_in_reg <= mbus.data_in;
+      strb_reg      <= {mbus.address,2'b00} >> mbus.dsel;
+      wr_reg        <= mbus.wr;
+      address_reg   <= mbus.address >> mbus.dsel;
+      base_addr_reg <= `BASE_ADDR >> mbus.dsel;
+      data_in_reg   <= mbus.data_in;
     end
     else
     begin
-      strb_reg    <= strb_reg;
-      wr_reg      <= wr_reg;    
-      address_reg <= address_reg;
-      data_in_reg <= data_in_reg;  
+      strb_reg      <= strb_reg;
+      wr_reg        <= wr_reg;    
+      address_reg   <= address_reg;
+      base_addr_reg <= base_addr_reg;
+      data_in_reg   <= data_in_reg;  
     end
   end
+
+  /*********************************************************/
+  /*  ***************************************************  */
+  /*  **                                               **  */
+  /*  **         Internal Register Definition          **  */
+  /*  **                                               **  */
+  /*  ***************************************************  */
+  /*********************************************************/
+  always_ff @(posedge mbus.clk or negedge mbus.rst_n) 
+  begin
+    if(~mbus.rst_n) 
+    begin
+      timeout_reg <= '0;
+    end 
+    else if (timeout_trig)
+    begin
+      timeout_reg <= timeout_reg + 1;
+    end
+    else
+    begin
+      timeout_reg <= '0;
+    end
+  end
+
 
   /*********************************************************/
   /*  ***************************************************  */
@@ -130,9 +160,13 @@ module apb_master (apbif.master mbus);
             m_nxt_state = IDLE;
           end
         end
-        else
+        else if (timeout_reg < 3'b100)
         begin
           m_nxt_state = ACCESS;
+        end
+        else
+        begin
+          m_nxt_state = IDLE;
         end
       end
 
@@ -158,6 +192,7 @@ module apb_master (apbif.master mbus);
     unique case (m_state)
       IDLE :
       begin
+        timeout_trig  = '0; 
         mbus.sel      = '0;
         mbus.enable   = '0;
         mbus.write    = '0;
@@ -170,9 +205,18 @@ module apb_master (apbif.master mbus);
 
       SETUP :
       begin
-        mbus.sel      = '1;
+        if ((address_reg[`ADDR_WIDTH-1:`ADDR_WIDTH-8] ^ base_addr_reg[`ADDR_WIDTH-1:`ADDR_WIDTH-8]) == '0)
+        begin
+          mbus.sel      = '1;
+        end
+        else
+        begin
+          mbus.sel      = '0;
+        end
+        //mbus.sel      = '1;
+        timeout_trig  = '0;
         mbus.enable   = '0;
-        mbus.addr     = address_reg;
+        mbus.addr     = address_reg - base_addr_reg;
         mbus.strb     = '0;
         mbus.data_out = '0;
         
@@ -190,9 +234,19 @@ module apb_master (apbif.master mbus);
 
       ACCESS :
       begin
-        mbus.sel    = '1;
+        if ((address_reg[`ADDR_WIDTH-1:`ADDR_WIDTH-8] ^ base_addr_reg[`ADDR_WIDTH-1:`ADDR_WIDTH-8]) == '0)
+        begin
+          mbus.sel      = '1;
+          timeout_trig  = '0;
+        end
+        else
+        begin
+          mbus.sel      = '0;
+          timeout_trig  = '1;
+        end
+        //mbus.sel    = '1;
         mbus.enable = '1;
-        mbus.addr   = address_reg;
+        mbus.addr   = address_reg - base_addr_reg;
 
         // STROBE ENCODER
         unique case ({mbus.dsel, strb_reg})
@@ -229,6 +283,7 @@ module apb_master (apbif.master mbus);
 
       default :
       begin
+        timeout_trig  = '0;
         mbus.sel      = '0;
         mbus.enable   = '0;
         mbus.write    = '0;

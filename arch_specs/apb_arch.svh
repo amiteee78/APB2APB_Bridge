@@ -7,7 +7,7 @@
 /*********************************************************/
 
 `ifndef BASE_ADDR
-  `define BASE_ADDR 32'h0000_0100
+  `define BASE_ADDR 32'h1100_0000
 `endif
 
 `ifndef ADDR_WIDTH

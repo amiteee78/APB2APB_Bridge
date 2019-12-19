@@ -93,36 +93,36 @@ module apb_bridge_tb ();
 
     for (int i = 0; i < 10; i++) 
     begin
-      single_write(`ADDR_WIDTH'h0000_00F0 + i, FULLWORD, `DATA_WIDTH'h000A_3210 + i);
+      single_write(`ADDR_WIDTH'h1100_00F0 + i, FULLWORD, `DATA_WIDTH'h000A_3210 + i);
     end
 
     for (int i = 0; i < 10; i++) 
     begin
-      single_read(`ADDR_WIDTH'h0000_00F0 + i, FULLWORD);
-    end
-
-    repeat(5) @(posedge clk);
-
-    for (int i = 0; i < 10; i++) 
-    begin
-      single_write(`ADDR_WIDTH'h0000_0012 + i, HALFWORD, `DATA_WIDTH'h510F_CB29 + i);
-    end
-
-    for (int i = 0; i < 10; i++) 
-    begin
-      single_read(`ADDR_WIDTH'h0000_0012 + i, HALFWORD);
+      single_read(`ADDR_WIDTH'h1100_00F0 + i, FULLWORD);
     end
 
     repeat(5) @(posedge clk);
 
     for (int i = 0; i < 10; i++) 
     begin
-      single_write(`ADDR_WIDTH'h0000_003D + i, BYTE, `DATA_WIDTH'h0102_1034 + i);
+      single_write(`ADDR_WIDTH'h1100_0012 + i, HALFWORD, `DATA_WIDTH'h510F_CB29 + i);
     end
 
     for (int i = 0; i < 10; i++) 
     begin
-      single_read(`ADDR_WIDTH'h0000_003D + i, BYTE);
+      single_read(`ADDR_WIDTH'h1100_0012 + i, HALFWORD);
+    end
+
+    repeat(5) @(posedge clk);
+
+    for (int i = 0; i < 10; i++) 
+    begin
+      single_write(`ADDR_WIDTH'h1100_003D + i, BYTE, `DATA_WIDTH'h0102_1034 + i);
+    end
+
+    for (int i = 0; i < 10; i++) 
+    begin
+      single_read(`ADDR_WIDTH'h1100_003D + i, BYTE);
     end
 
     repeat(5) @(posedge clk);
@@ -131,52 +131,68 @@ module apb_bridge_tb ();
     /*-------------------------------------------------------------------------------------*/
     for (int i = 0; i < 2; i++) 
     begin
-      single_write(`ADDR_WIDTH'h0000_0100 + i, FULLWORD, `DATA_WIDTH'h0102_1034 + i);
-      single_read(`ADDR_WIDTH'h0000_0100 + i, FULLWORD);
+      single_write(`ADDR_WIDTH'h1100_0100 + i, FULLWORD, `DATA_WIDTH'h0102_1034 + i);
+      single_read(`ADDR_WIDTH'h1100_0100 + i, FULLWORD);
     end
 
     for (int i = 0; i < 2; i++) 
     begin
-      single_write(`ADDR_WIDTH'h0000_0200 + i, HALFWORD, `DATA_WIDTH'h0102_1034 + i);
-      single_read(`ADDR_WIDTH'h0000_0200 + i, HALFWORD);
+      single_write(`ADDR_WIDTH'h1100_0200 + i, HALFWORD, `DATA_WIDTH'h0102_1034 + i);
+      single_read(`ADDR_WIDTH'h1100_0200 + i, HALFWORD);
     end
 
     for (int i = 0; i < 2; i++) 
     begin
-      single_write(`ADDR_WIDTH'h0000_0400 + i, BYTE, `DATA_WIDTH'h0102_1034 + i);
-      single_read(`ADDR_WIDTH'h0000_0400 + i, BYTE);
+      single_write(`ADDR_WIDTH'h1100_0400 + i, BYTE, `DATA_WIDTH'h0102_1034 + i);
+      single_read(`ADDR_WIDTH'h1100_0400 + i, BYTE);
     end
 
     repeat(5) @(posedge clk);
 
-    burst_write(`ADDR_WIDTH'h0000_0200, FULLWORD, `DATA_WIDTH'hDEAD_BEEF, 8);
-    burst_read(`ADDR_WIDTH'h0000_0530, FULLWORD, 8);
+    burst_write(`ADDR_WIDTH'h1100_0200, FULLWORD, `DATA_WIDTH'hDEAD_BEEF, 8);
+    burst_read(`ADDR_WIDTH'h1100_0530, FULLWORD, 8);
 
     repeat(5) @(posedge clk);
     /*-------------------------------------------------------------------------------------*/
 
-    burst_write(`ADDR_WIDTH'h0000_00B0, FULLWORD, `DATA_WIDTH'hC0D9_42F0, 8);
-    burst_read(`ADDR_WIDTH'h0000_00B0, FULLWORD, 8);
+    burst_write(`ADDR_WIDTH'h1100_00B0, FULLWORD, `DATA_WIDTH'hC0D9_42F0, 8);
+    burst_read(`ADDR_WIDTH'h1100_00B0, FULLWORD, 8);
 
     repeat(5) @(posedge clk);
 
-    burst_write(`ADDR_WIDTH'h0000_0050, HALFWORD, `DATA_WIDTH'h3187_EFC6, 8);
-    burst_read(`ADDR_WIDTH'h0000_0050, HALFWORD, 8);
+    burst_write(`ADDR_WIDTH'h1100_0050, HALFWORD, `DATA_WIDTH'h3187_EFC6, 8);
+    burst_read(`ADDR_WIDTH'h1100_0050, HALFWORD, 8);
 
     repeat(5) @(posedge clk);
 
-    burst_write(`ADDR_WIDTH'h0000_02F0, BYTE, `DATA_WIDTH'h5B0D_0FEF, 8);
-    burst_read(`ADDR_WIDTH'h0000_02F0, BYTE, 8);
+    burst_write(`ADDR_WIDTH'h1100_02F0, BYTE, `DATA_WIDTH'h5B0D_0FEF, 8);
+    burst_read(`ADDR_WIDTH'h1100_02F0, BYTE, 8);
 
     repeat(5) @(posedge clk);
 
-    burst_write(`ADDR_WIDTH'h0000_0090, FULLWORD, `DATA_WIDTH'hFBED_4C97, 8);
-    burst_read(`ADDR_WIDTH'h0000_0240, BYTE, 32);
+    burst_write(`ADDR_WIDTH'h1100_0090, FULLWORD, `DATA_WIDTH'hFBED_4C97, 8);
+    burst_read(`ADDR_WIDTH'h1100_0240, BYTE, 32);
 
     repeat(5) @(posedge clk);
 
-    burst_write(`ADDR_WIDTH'h0000_0070, HALFWORD, `DATA_WIDTH'hA39C_B7E1, 16);
-    burst_read(`ADDR_WIDTH'h0000_0038, FULLWORD, 8);
+    burst_write(`ADDR_WIDTH'h1100_0070, HALFWORD, `DATA_WIDTH'hA39C_B7E1, 16);
+    burst_read(`ADDR_WIDTH'h1100_0038, FULLWORD, 8);
+
+    repeat(5) @(posedge clk);
+    trnsfr  <= '1;
+    wr      <= '1;
+    dsel    <= FULLWORD;
+    address <= `ADDR_WIDTH'h1200_00B0;
+    data_in <= `DATA_WIDTH'hFF27_631E;
+    @(posedge clk);
+    trnsfr  <= '0;
+    wr      <= '0;
+    repeat(10) @(posedge clk); 
+
+/*    repeat(5) @(posedge clk);
+
+    burst_write(`ADDR_WIDTH'h1200_00B0, FULLWORD, `DATA_WIDTH'hFF27_631E, 4);
+    burst_read(`ADDR_WIDTH'h0000_00B0, FULLWORD, 4);  */
 
     #20 $finish(1);
   end
