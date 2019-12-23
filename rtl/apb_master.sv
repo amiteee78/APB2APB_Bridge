@@ -160,7 +160,7 @@ module apb_master (apbif.master mbus);
             m_nxt_state = IDLE;
           end
         end
-        else if (timeout_reg < 3'b100)
+        else if (timeout_reg < 3'b010)
         begin
           m_nxt_state = ACCESS;
         end
