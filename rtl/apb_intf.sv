@@ -9,7 +9,7 @@
 // Design Name    : apb_intf
 // Module Name    : apbif, memif
 // Project Name   : APB2APB Bridge
-// Tool Versions  : Vivado v2019.1.1 (64-bit)
+// Tool Versions  : Vivado v2019.2 (64-bit)
 // Description    : 
 // 
 // Two individual interfaces (apbif, memif) are defined in this design.

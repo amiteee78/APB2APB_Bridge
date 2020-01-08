@@ -9,7 +9,7 @@
 // Design Name    : apb_master
 // Module Name    : apb_master
 // Project Name   : APB2APB Bridge
-// Tool Versions  : Vivado v2019.1.1 (64-bit)
+// Tool Versions  : Vivado v2019.2 (64-bit)
 // Description    : 
 // 
 // apb_master drives necessary signals from CPU end to run the slaves according to the APB transaction protocol.

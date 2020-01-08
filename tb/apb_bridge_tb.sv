@@ -9,7 +9,7 @@
 // Design Name    : apb_bridge_tb
 // Module Name    : apb_bridge_tb
 // Project Name   : APB2APB Bridge
-// Tool Versions  : Vivado v2019.1.1 (64-bit)
+// Tool Versions  : Vivado v2019.2 (64-bit)
 // Description    : 
 // 
 // apb_bridge_tb is the test bench for verifying the APB2APB Bridge design developed in the flat approach. 
@@ -178,6 +178,8 @@ module apb_bridge_tb ();
     burst_write(`ADDR_WIDTH'h1100_0070, HALFWORD, `DATA_WIDTH'hA39C_B7E1, 16);
     burst_read(`ADDR_WIDTH'h1100_0038, FULLWORD, 8);
 
+    // Access TImeout test
+    /*----------------------------------------------------------------------------------------*/
     repeat(5) @(posedge clk);
 
     for (int i = 0; i < 4; i++) 
@@ -189,6 +191,17 @@ module apb_bridge_tb ();
     begin
       read_access_timeout(`ADDR_WIDTH'h1200_0012 + i, FULLWORD);
     end
+
+    for (int i = 0; i < 4; i++) 
+    begin
+      write_access_timeout(`ADDR_WIDTH'h1300_0019 + i, HALFWORD, `DATA_WIDTH'h9D17_2046 + i);
+    end
+
+    for (int i = 0; i < 4; i++) 
+    begin
+      read_access_timeout(`ADDR_WIDTH'h1300_0019 + i, HALFWORD);
+    end
+    /*----------------------------------------------------------------------------------------*/
 
     #20 $finish(1);
   end

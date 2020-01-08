@@ -9,7 +9,7 @@
 // Design Name    : apb_slave
 // Module Name    : apb_slave
 // Project Name   : APB2APB Bridge
-// Tool Versions  : Vivado v2019.1.1 (64-bit)
+// Tool Versions  : Vivado v2019.2 (64-bit)
 // Description    : 
 // 
 // apb_slave receives necessary signals from CPU end to access the memory according to the APB transaction protocol.

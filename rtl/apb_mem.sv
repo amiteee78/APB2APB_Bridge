@@ -9,7 +9,7 @@
 // Design Name    : apb_mem
 // Module Name    : apb_mem
 // Project Name   : APB2APB Bridge
-// Tool Versions  : Vivado v2019.1.1 (64-bit)
+// Tool Versions  : Vivado v2019.2 (64-bit)
 // Description    : 
 // 
 // apb_mem module is a System Verilog Behavioral Model of a dual port SRAM (individual read & write channel).

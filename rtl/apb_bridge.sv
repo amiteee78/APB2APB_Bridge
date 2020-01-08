@@ -9,7 +9,7 @@
 // Design Name    : apb_bridge
 // Module Name    : apb_bridge
 // Project Name   : APB2APB Bridge
-// Tool Versions  : Vivado v2019.1.1 (64-bit)
+// Tool Versions  : Vivado v2019.2 (64-bit)
 // Description    :
 // 
 //                  The purpose of this module is to provide interconnection between APB Master & APB Slave.
